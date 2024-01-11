@@ -1,21 +1,23 @@
 # drone-s3-artifacts-download
 This plugin is designed to download objects/artifacts from an AWS S3 bucket. The primary goal of this plugin is to use AWS CLI to authenticate into an AWS account and download objects from an S3 bucket.
 
-## Build and Run using terminal
+## Build
 
-Clone the repo and use the following commands to run the script directly from the terminal. Make sure to export the respective environment variables and have AWS CLI installed on your local machine.
+Build the binary for different OS/Arch with the following commands:
 
 ```bash
-./path/to/repo/download_artifacts_s3.sh
+env GOOS=linux GOARCH=amd64 go build -o release/linux/amd64/drone-s3-artifacts-download .
+env GOOS=linux GOARCH=arm64 go build -o release/linux/arm64/drone-s3-artifacts-download .
+env GOOS=windows go build -o release/windows/amd64/drone-s3-artifacts-download.exe   
 ```
+
 
 ## Docker
 
 Build the Docker image with the following commands. Using the following command, the image can be built for different OS and architecture. 
 
 ```
-docker buildx create --use
-docker buildx build --platform linux/amd64,linux/arm64 -t DOCKER_ORG/drone-s3-artifacts-download .
+docker build -t DOCKER_ORG/drone-s3-artifacts-download -f PATH_TO_DOCKERFILE
 ```
 
 ## Usage
